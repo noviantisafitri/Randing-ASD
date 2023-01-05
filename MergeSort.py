@@ -1,32 +1,35 @@
 import os
 os.system('cls')
 
+def mergesort(angka):
+    if len(angka) > 1 :
+        mid = len(angka)//2
+        atas = angka[:mid]
+        bawah = angka [mid:]
 
-def mergesort(list):
-    list_length = len(list)
-    if list_length <= 1:
-        return list
+        mergesort(atas)
+        mergesort(bawah)
+        i = j = k = 0
+        while i < len(atas) and j < len(bawah):
+            if atas[i] < bawah [j]:
+                angka[k] = atas[i]
+                i = i + 1
+            else :
+                angka[k] = bawah[j]
+                j =j + 1
+            k = k+1
 
-    mid = list_length // 2
-    left = mergesort(list[:mid])
-    right = mergesort(list[mid:])
-    return merge(left, right)
+        while i < len(atas):
+            angka[k] = atas[i]
+            i = i+1
+            k = k+1
 
-def merge(l, r):
-    output = []
-    i = j = 0
-    while i < len(l) and j < len(r):
-        if l[i] < r[j]:
-            output.append(l[i])
-            i += 1
-        else:
-            output.append(r[j])
-            j += 1
-    output.extend(l[i:])
-    output.extend(r[j:])
-
-    return output
-
+        while j < len(bawah):
+            angka[k] = bawah[j]
+            j = j+1
+            k = k+1
+    return angka
+    
 def pisah(listku): 
     pisahkan = [] 
     for i in listku: 
@@ -40,7 +43,7 @@ variable = [12, 1, [22, 3, [8, 14]], 2, 6, [11], 90]
 
 print("Merge Sort")
 print("Sebelum = ",variable) 
-hasil = pisah(variable) 
-print("Setelah dipisah = ",hasil) 
-sort = mergesort(hasil)
+pisahkan = pisah(variable) 
+print("Setelah dipisah = ",pisahkan) 
+sort = mergesort(pisahkan)
 print("Setelah disorting =", sort)
